@@ -98,8 +98,8 @@ def main(args):
 shutil.move(result, output_path)
 print('The generated video is named:', output_path)
 
-    if not args.verbose:
-        shutil.rmtree(save_dir)
+if not args.verbose:
+    shutil.rmtree(save_dir)
 
     
 if __name__ == '__main__':

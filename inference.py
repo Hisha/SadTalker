@@ -145,8 +145,11 @@ if __name__ == '__main__':
 
     args = parser.parse_args()
 
-    if args.output_file and not os.path.dirname(args.output_file):
-        raise ValueError("If using --output_file, include the full path (not just the filename).")
+    if args.output_file:
+        if not os.path.dirname(args.output_file):
+            args.output_file = os.path.abspath(os.path.join(os.getcwd(), args.output_file))
+        else:
+            args.output_file = os.path.abspath(args.output_file)
     
     if torch.cuda.is_available() and not args.cpu:
         args.device = "cuda"
